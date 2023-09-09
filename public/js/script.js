@@ -8,26 +8,26 @@ const polColor = document.querySelector("#polColor");
 const dotLocation = document.querySelector(".dot-location");
 
 let data = [{
-    "col": 1,
-    "row": 1,
-    "polygon": "13% 16%, 12% 68%, 44% 80%, 82% 33%",
-    "backgroundColor": "#fff",
-    "polColor": "#000",
-    "author": "Natswar"
-}, {
-    "col": 2,
-    "row": 2,
-    "polygon": "16% 61%, 12% 68%, 44% 80%, 82% 33%",
-    "backgroundColor": "#000",
-    "polColor": "#fff",
-    "author": "Natswar"
-}, {
-    "col": 100,
-    "row": 1000,
-    "polygon": "16% 61%, 12% 68%, 44% 80%, 82% 33%",
-    "backgroundColor": "#000",
-    "polColor": "#fff",
-    "author": "Natswar"
+        "col": 1,
+        "row": 1,
+        "polygon": "13% 16%, 12% 68%, 44% 80%, 82% 33%",
+        "backgroundColor": "#fff",
+        "polColor": "#000",
+        "author": "Natswar"
+    }, {
+        "col": 2,
+        "row": 2,
+        "polygon": "16% 61%, 12% 68%, 44% 80%, 82% 33%",
+        "backgroundColor": "#000",
+        "polColor": "#fff",
+        "author": "Natswar"
+    // }, {
+    //     "col": 100,
+    //     "row": 1000,
+    //     "polygon": "16% 61%, 12% 68%, 44% 80%, 82% 33%",
+    //     "backgroundColor": "#000",
+    //     "polColor": "#fff",
+    //     "author": "Natswar"
 }];
 updatePol();
 data.forEach(element => {
@@ -74,16 +74,18 @@ updatePol();
 //thêm nút chỉnh polygon
 btnAdd.addEventListener('click', function () {
     dotLocation.innerHTML += `
-    <div class="mt-1">
-        <div class="form-col-2 text-center">
-            <button class="btn btn-danger" onclick="removeDot(this)"><i
-                    class="fa-solid fa-x"></i></button>
-        </div>
+    <div class="mt-1 my-4 d-flex justify-content-between">
+    <div class="w-100 me-2">
+        <label for="my-2 fw-bold"> Vertical</label>
+        <input class="form-control" type="range" min="0" max="100" value="50"
+            onchange="updatePol()">
+        <label for="my-2 fw-bold"> Horizontal</label>
         <input class="form-control" type="range" min="0" max="100" value="0"
             onchange="updatePol()">
-        <input class="form-control" type="range" min="0" max="100" value="0"
-            onchange="updatePol()">
-    </div>`;
+    </div>
+    <button class="btn btn-red" onclick="removeDot(this)"><i class="fa-solid fa-x"></i></button>
+
+</div>`;
 
     updatePol();
 });
@@ -116,7 +118,7 @@ btnSave.addEventListener("click", function () {
     const row = document.querySelector("#row");
     for (const item of data) {
         console.log(item.row == row, item.col == col);
-        if(item.row == row.value && item.col == col.value) { 
+        if (item.row == row.value && item.col == col.value) {
             alert("Đã tồn tại");
             return;
         }
@@ -135,3 +137,60 @@ btnSave.addEventListener("click", function () {
     container.appendChild(bgPol);
     $('#myModal').modal('hide');
 })
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("toggleSidebar");
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.querySelector(".overlay");
+
+    toggleButton.addEventListener("click", function () {
+        if (sidebar.style.width === "250px") {
+            // Close the sidebar
+            sidebar.style.width = "0";
+            overlay.style.display = "none";
+        } else {
+            // Open the sidebar
+            sidebar.style.width = "250px";
+            overlay.style.display = "block";
+        }
+    });
+
+    overlay.addEventListener("click", function () {
+        // Close the sidebar when clicking on the overlay
+        sidebar.style.width = "0";
+        overlay.style.display = "none";
+    });
+});
+
+
+
+const sidebar = document.getElementById("mySidebar");
+const openButton = document.getElementById("openSidebar");
+const overlay = document.getElementById("overlay");
+const content = document.getElementById("myContent");
+
+function openSidebar() {
+    sidebar.style.right = "0";
+    document.body.classList.add("sidebar-open"); // Thêm lớp để ẩn nút "Open Sidebar"
+    overlay.style.display = "block"; // Hiển thị overlay khi sidebar mở
+    sidebar.style.transition = "1s";
+}
+
+function closeSidebar() {
+    sidebar.style.right = "-550px";
+    document.body.classList.remove("sidebar-open"); // Loại bỏ lớp để hiện nút "Open Sidebar"
+    overlay.style.display = "none"; // Ẩn overlay khi sidebar đóng
+    sidebar.style.transition = "1s";
+}
+
+openButton.addEventListener("click", openSidebar);
+
+// Lắng nghe sự kiện click trên overlay để đóng sidebar
+overlay.addEventListener("click", closeSidebar);

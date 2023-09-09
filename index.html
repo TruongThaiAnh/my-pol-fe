@@ -10,106 +10,130 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./public/css/style.css">
 </head>
 
-<body>
-    <div class="pol-container position-relative">
-    </div>
-    <div class="btn-add position-fixed" data-toggle="modal" data-target=".modal">
-        <div class="position-relative">
-            <div class="item-center"></div>
+<body  >
+    <div class="container ">
+        <h1 class="text-capitalize my-5">here is where the polygon showed</h1>
+        <div class="pol-container position-relative">
         </div>
-    </div>
+        <button class="open-button" id="openSidebar">&#9776; Open Sidebar</button>
 
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="add-pol" aria-hidden="false" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="row h-75">
-                    <div class="col-7">
-                        <div class="content h-100">
-                            <div class="cus-pol-bg w-h-100 item-center">
+        <div class="sidebar " id="mySidebar">
+            <div class="sidebar-content">
+                <div class="d-flex container justify-content-between">
+                    <div class="header-content my-3">
+                        <h1 class="fw-bold">Sidebar Content</h1>
+                        <p>This is where you adjust the shape of the polygon.</p>
+                    </div>
+                    <button class="btn close-btn d-flex justify-content-center align-items-center "
+                        onclick="closeSidebar()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="content h-100 d-flex justify-content-center align-items-center ">
+                            <div class="cus-pol-bg w-h-100 ">
                                 <div class="cus-pol w-h-100 bg-black"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div class="container">
-                            <div class="form-group">
-                                <label for="bgColor">Background color</label>
-                                <input class="form-control" type="color" id="bgColor" value="#000000"
+                    <div class="col-md-8">
+                        <div class="adj-color text-dark rounded-3 bg-white my-2 p-3">
+                            <h2 class="text-start my-2 text-capitalize fw-bold">Adjust the color</h2>
+                            <p class="text-end fs-5"> <strong style="color: #176a6c;">Personalize your color</strong></p>
+                            <div class="form-group ">
+                                <label class="my-2 fw-bold" for="bgColor">Background color</label>
+                                <input class="form-control p-1" type="color" id="bgColor" value="#000000"
                                     onchange="updatePol()">
                             </div>
-                            <div class="form-group">
-                                <label for="bgColor">Pol color</label>
-                                <input class="form-control" type="color" id="polColor" value="#ffffff"
+                            <div class="form-group ">
+                                <label class="my-2 fw-bold" for="bgColor">Pol color</label>
+                                <input class="form-control p-1" type="color" id="polColor" value="#ffffff"
                                     onchange="updatePol()">
                             </div>
-                            <div class="form-group dot-location">
-                                <label>Dot location</label>
-                                <div class="mt-1">
-                                    <div class="text-center">
-                                        <button class="btn btn-danger" onclick="removeDot(this)"><i
-                                                class="fa-solid fa-x"></i></button>
-                                    </div>
+                        </div>
+                        <div class="form-group dot-location text-dark  bg-white p-3 mt-2 ">
+                            <h2 class="text-start my-2 text-capitalize fw-bold">Adjust the Point</h2>
+                            <p class="text-end fs-5" style="color: #176a6c;"><strong> Adjust the point to the
+                                    line</strong>
+                            </p>
+                            <div class="mt-1 my-4 d-flex justify-content-between">
+                                <div class="w-100 me-2">
+                                    <label for="my-2 fw-bold"> Vertical</label>
                                     <input class="form-control" type="range" min="0" max="100" value="50"
                                         onchange="updatePol()">
+                                    <label for="my-2 fw-bold"> Horizontal</label>
                                     <input class="form-control" type="range" min="0" max="100" value="0"
                                         onchange="updatePol()">
                                 </div>
-                                <div class="mt-1">
-                                    <div class="text-center">
-                                        <button class="btn btn-danger" onclick="removeDot(this)"><i
-                                                class="fa-solid fa-x"></i></button>
-                                    </div>
+                                <button class="btn btn-red" onclick="removeDot(this)"><i
+                                        class="fa-solid fa-x"></i></button>
+
+                            </div>
+                            <div class="mt-1 my-4 d-flex justify-content-between ">
+                                <div class="w-100 me-2">
+                                    <label for="my-2 fw-bold"> Vertical</label>
                                     <input class="form-control" type="range" min="0" max="100" value="0"
                                         onchange="updatePol()">
+                                    <label for="my-2 fw-bold"> Horizontal</label>
                                     <input class="form-control" type="range" min="0" max="100" value="100"
                                         onchange="updatePol()">
                                 </div>
-                                <div class="mt-1">
-                                    <div class="text-center">
-                                        <button class="btn btn-danger" onclick="removeDot(this)"><i
-                                                class="fa-solid fa-x"></i></button>
-                                    </div>
+                                <button class="btn btn-red" onclick="removeDot(this)"><i
+                                        class="fa-solid fa-x"></i></button>
+                            </div>
+                            <div class="mt-1 my-4 d-flex justify-content-between">
+                                <div class="w-100 me-2">
+                                    <label for="my-2 fw-bold"> Vertical</label>
                                     <input class="form-control" type="range" min="0" max="100" value="100"
                                         onchange="updatePol()">
+                                    <label for="my-2 fw-bold"> Horizontal</label>
 
                                     <input class="form-control" type="range" min="0" max="100" value="100"
                                         onchange="updatePol()">
                                 </div>
+                                <button class="btn btn-red" onclick="removeDot(this)"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
-                            <div class="text-center">
-                                <button class="btn btn-primary btn-add-dot">Add</button>
+                        </div>
+                        <div class="text-center  container pb-3 bg-white">
+                            <button class="btn btn-blue btn-add-dot w-100 ">Add</button>
+                        </div>
+
+                        <div class=" text-dark  bg-white p-3 my-2 rounded-3">
+                            <h2 class="text-start my-2 text-capitalize fw-bold">Adjust the Location</h2>
+                            <p class="text-end fs-5" style="color: #176a6c;"><strong> Adjust the number of line</strong>
+                            <div class="row ">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="col">Column</label>
+                                        <input class="form-control" type="number" id="col" value="1" min="1">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="row">Row</label>
+                                        <input class="form-control" type="number" id="row" value="1" min="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4 pb-2 ">
+                                <button class="btn btn-blue w-100 btn-save">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="h-25">
-                    <div class="row ">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="col">Column</label>
-                                <input class="form-control" type="number" id="col" value="1" min="1">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="row">Row</label>
-                                <input class="form-control" type="number" id="row" value="1" min="1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary btn-save">Save</button>
-                    </div>
-                </div>
+
+
+
             </div>
         </div>
+
+        <div class="overlay" id="overlay"></div>
     </div>
-    </div>
-    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
